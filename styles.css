@@ -1,0 +1,66 @@
+
+*{box-sizing:border-box;margin:0;padding:0}
+body{background:#f5f7fb;color:#2f3356;line-height:1.5;padding:24px;font-family:'Poppins',system-ui,-apple-system,Segoe UI,Roboto,Helvetica,Arial,sans-serif}
+header{text-align:center;margin-bottom:24px}
+header h1{font-size:28px;color:#725af0;margin-bottom:6px}
+header p{color:#6c6f89}
+
+.summary-cards{display:grid;grid-template-columns:repeat(5,minmax(160px,1fr));gap:12px;margin-bottom:16px}
+.card{background:#fff;border-radius:12px;box-shadow:0 2px 6px rgba(0,0,0,.05);padding:14px;display:flex;align-items:center;gap:10px;transition:transform .2s ease}
+.card:hover{transform:translateY(-2px)}
+.card .icon{width:36px;height:36px;border-radius:10px;display:grid;place-items:center;font-size:18px}
+#card-jour .icon{background:#e6f5ea;color:#34b855}
+#card-attention .icon{background:#fff7e6;color:#f59e0b}
+#card-retard .icon{background:#ffeaea;color:#dc2626}
+#card-attente .icon{background:#e6f0ff;color:#3b82f6}
+#card-inactifs .icon{background:#f0f0f5;color:#6c6f89}
+.card .label{font-size:12px;color:#6c6f89}
+.card .count{font-weight:600;font-size:18px}
+
+.table-container{overflow-x:auto;background:#fff;border-radius:12px;padding:16px;box-shadow:0 2px 6px rgba(0,0,0,.05)}
+.consultants-table{width:100%;border-collapse:collapse}
+.consultants-table thead{background:#f0f4fa}
+.consultants-table th,.consultants-table td{padding:10px;text-align:left;font-size:14px}
+.consultants-table th{color:#725af0;font-weight:600}
+.consultants-table tbody tr{border-bottom:1px solid #f0f0f5;transition:background-color .2s ease}
+.consultants-table tbody tr:hover{background:#f7f8fc}
+
+.name-wrap{display:flex;align-items:center;gap:8px}
+.name{font-weight:500}
+.name[contenteditable="true"]{outline:none}
+.name.editable:after{content:"\f303";font-family:"Font Awesome 6 Free";font-weight:900;margin-left:6px;color:#9aa0b4;font-size:11px}
+
+.email-wrapper{display:flex;align-items:center;gap:8px;background:#f8f9fd;border:1px solid #d9dbe8;border-radius:8px;padding:6px 8px}
+.email-wrapper i{color:#6c6f89}
+.email-input{border:none;background:transparent;outline:none;color:#2f3356;font-size:14px;width:260px}
+.email-input:focus{outline:2px solid #4d62f3;background:#eef2ff}
+.email-input.invalid{outline:2px solid #dc2626;background:#fff5f5}
+
+.status-badge{display:inline-flex;align-items:center;gap:6px;padding:4px 8px;border-radius:10px;font-size:12px;font-weight:500;transition:all .2s ease}
+.status-jour{color:#2f855a;background:#e6ffed}
+.status-attention{color:#dd6b20;background:#fff4e3}
+.status-retard{color:#e53e3e;background:#ffeaea}
+.status-attente,.status-nouveau{color:#3b82f6;background:#e6f0ff}
+.status-inactif{color:#6c6f89;background:#f0f0f5}
+
+.last-action{font-size:13px;color:#6c6f89}
+
+.switch{position:relative;display:inline-block;width:44px;height:24px}
+.switch input{opacity:0;width:0;height:0}
+.slider{position:absolute;cursor:pointer;top:0;left:0;right:0;bottom:0;background:#e5e7eb;transition:.2s;border-radius:999px}
+.slider:before{position:absolute;content:"";height:18px;width:18px;left:3px;top:3px;background:white;transition:.2s;border-radius:999px;box-shadow:0 1px 2px rgba(0,0,0,.2)}
+input:checked + .slider{background:#4d62f3}
+input:checked + .slider:before{transform:translateX(20px)}
+
+.action-btn{padding:8px 14px;background:#3a6cf3;color:#fff;border:none;border-radius:10px;font-size:14px;font-weight:500;cursor:pointer;transition:background-color .2s ease}
+.action-btn:hover{background:#3157c7}
+.action-btn.highlight{animation:pulse 1.2s infinite}
+@keyframes pulse{0%{box-shadow:0 0 0 0 rgba(58,108,243,.4)}70%{box-shadow:0 0 0 10px rgba(58,108,243,0)}100%{box-shadow:0 0 0 0 rgba(58,108,243,0)}}
+
+footer{margin-top:16px;display:flex;justify-content:space-between;align-items:center}
+.linklike{background:transparent;border:none;color:#6c6f89;cursor:pointer}
+.linklike:hover{color:#2f3356;text-decoration:underline}
+
+.bottom-link{display:flex;align-items:center;gap:8px;color:#725af0;text-decoration:none;font-weight:500}
+.bottom-link i{display:inline-grid;place-items:center;width:28px;height:28px;border-radius:999px;background:#edeffd;color:#725af0}
+.bottom-link:hover{text-decoration:underline}

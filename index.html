@@ -1,0 +1,54 @@
+
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dashboard des consultants</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css"/>
+</head>
+<body>
+  <header>
+    <h1>Dashboard des consultants</h1>
+    <p>Suivi des candidatures — états automatiques, actions et persistance locale</p>
+  </header>
+
+  <section class="summary-cards">
+    <div class="card" id="card-jour"><div class="icon"><i class="fa-solid fa-check-circle"></i></div><div><div class="label">À jour</div><div class="count" id="count-jour">0</div></div></div>
+    <div class="card" id="card-attention"><div class="icon"><i class="fa-solid fa-clock"></i></div><div><div class="label">Attention (≥ 2j)</div><div class="count" id="count-attention">0</div></div></div>
+    <div class="card" id="card-retard"><div class="icon"><i class="fa-solid fa-triangle-exclamation"></i></div><div><div class="label">En retard (≥ 4j)</div><div class="count" id="count-retard">0</div></div></div>
+    <div class="card" id="card-attente"><div class="icon"><i class="fa-solid fa-arrow-trend-up"></i></div><div><div class="label">En attente (jamais actionné)</div><div class="count" id="count-attente">0</div></div></div>
+    <div class="card" id="card-inactifs"><div class="icon"><i class="fa-solid fa-user-slash"></i></div><div><div class="label">Inactifs</div><div class="count" id="count-inactifs">0</div></div></div>
+  </section>
+
+  <section class="table-container">
+    <table class="consultants-table">
+      <thead>
+        <tr>
+          <th>CONSULTANT</th>
+          <th>BOÎTE MAIL</th>
+          <th>STATUT</th>
+          <th>DERNIÈRE ACTION</th>
+          <th>ACTIF</th>
+          <th>ACTION</th>
+        </tr>
+      </thead>
+      <tbody id="table-body"></tbody>
+    </table>
+  </section>
+
+  <footer>
+    <button id="reset-data" class="linklike"><i class="fa-solid fa-rotate-left"></i> Réinitialiser les données</button>
+    <a class="bottom-link" href="turnover.html" target="_blank" title="Ouvrir la version Turnover-IT (ajout manuel)">
+      <i class="fa-solid fa-up-right-from-square"></i> Ouvrir la version Turnover‑IT
+    </a>
+  </footer>
+  <script src="env.js"></script>
+  <script src="supabaseClient.js"></script>
+  <script src="script.js"></script>
+</body>
+</html>
