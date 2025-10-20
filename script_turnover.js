@@ -219,9 +219,28 @@ function build() {
       }
     });
     const comp = document.createElement("div");
+    comp.className = "company editable";
     comp.textContent = c.company;
     comp.style.fontSize = "12px";
     comp.style.color = "#6c6f89";
+    comp.style.cursor = "pointer";
+    comp.setAttribute("contenteditable", "true");
+    comp.title = "Cliquez pour modifier la société";
+    comp.addEventListener("keydown", (e) => {
+      if (e.key === "Enter") {
+        e.preventDefault();
+        comp.blur();
+      }
+    });
+    comp.addEventListener("blur", () => {
+      const v = comp.textContent.trim();
+      if (v.length) {
+        c.company = v;
+        saveData(data);
+      } else {
+        comp.textContent = c.company;
+      }
+    });
     wrap.appendChild(name);
     tdN.appendChild(wrap);
     tdN.appendChild(comp);
@@ -297,6 +316,11 @@ function build() {
     tdA.appendChild(lbl);
     tr.appendChild(tdA);
     const tdB = document.createElement("td");
+    const btnContainer = document.createElement("div");
+    btnContainer.style.display = "flex";
+    btnContainer.style.gap = "8px";
+    btnContainer.style.alignItems = "center";
+    
     const btn = document.createElement("button");
     btn.className = "action-btn";
     btn.textContent = "Candidater";
@@ -308,7 +332,25 @@ function build() {
       saveData(data);
       counts();
     });
-    tdB.appendChild(btn);
+    
+    const deleteBtn = document.createElement("button");
+    deleteBtn.className = "action-btn";
+    deleteBtn.style.background = "#ef4444";
+    deleteBtn.style.color = "white";
+    deleteBtn.innerHTML = '<i class="fa-solid fa-trash"></i>';
+    deleteBtn.title = "Supprimer ce consultant";
+    deleteBtn.addEventListener("click", () => {
+      if (confirm(`Êtes-vous sûr de vouloir supprimer ${c.name} ?`)) {
+        data.splice(idx, 1);
+        saveData(data);
+        build();
+        counts();
+      }
+    });
+    
+    btnContainer.appendChild(btn);
+    btnContainer.appendChild(deleteBtn);
+    tdB.appendChild(btnContainer);
     tr.appendChild(tdB);
     rules(c, btn, b);
     tableBody.appendChild(tr);
