@@ -380,6 +380,46 @@ document.addEventListener("DOMContentLoaded", async () => {
   } catch (e) {}
   build();
   counts();
+  document
+    .getElementById("toggle-add")
+    .addEventListener("click", () => {
+      const f = document.getElementById("add-form");
+      if (f) f.style.display = "block";
+    });
+  document
+    .getElementById("nf-cancel")
+    .addEventListener("click", () => {
+      const f = document.getElementById("add-form");
+      if (f) f.style.display = "none";
+    });
+  const nfSave = document.getElementById("nf-save");
+  if (nfSave) {
+    nfSave.addEventListener("click", () => {
+      const name = document.getElementById("nf-name").value.trim();
+      const company = document.getElementById("nf-company").value.trim();
+      const mail = document.getElementById("nf-mail").value.trim();
+      if (!name || !company || !valid(mail)) {
+        alert("Veuillez saisir un nom, une société et un email valide.");
+        return;
+      }
+      data.push({
+        name,
+        company,
+        mailbox: mail,
+        status: "Nouveau",
+        lastAction: null,
+        active: true,
+      });
+      saveData(data);
+      const f = document.getElementById("add-form");
+      if (f) f.style.display = "none";
+      build();
+      counts();
+      document.getElementById("nf-name").value = "";
+      document.getElementById("nf-company").value = "";
+      document.getElementById("nf-mail").value = "";
+    });
+  }
   setInterval(() => {
     [...tableBody.children].forEach((row, idx) => {
       const c = data[idx];
